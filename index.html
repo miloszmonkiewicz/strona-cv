@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miłosz Monkiewicz — Junior Manual QA Tester</title>
+  <meta name="description"
+    content="Miłosz Monkiewicz - junior manual QA tester. Functional, regression and exploratory testing, bug reporting, API testing with Postman.">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1b1f2e;
+      --ink-2: #535a70;
+      --ink-3: #8990a4;
+      --paper: #ffffff;
+      --mist: #f5f6fb;
+      --mist-2: #eceef7;
+      --line: #e5e7f1;
+      --indigo: #5a5cf0;
+      --violet: #8b5cf6;
+      --coral: #fb6f8d;
+      --mint: #0aa988;
+      --mint-soft: #e3f7f1;
+      --amber: #d98324;
+      --radius: 16px;
+      --display: 'Space Grotesk', -apple-system, system-ui, sans-serif;
+      --body: 'Inter', -apple-system, system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --maxw: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    ::selection {
+      background: rgba(90, 92, 240, .16);
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- header bar (appears after the hero CTAs leave view) ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: saturate(140%) blur(10px);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(255, 255, 255, .86);
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-100%);
+      transition: transform .32s ease;
+      will-change: transform;
+    }
+
+    header.nav-shown {
+      transform: translateY(0);
+    }
+
+    .bar {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 16px;
+    }
+
+    .bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: .9rem;
+      padding: 10px 16px;
+      border-radius: 11px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      flex: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      color: #fff;
+      box-shadow: 0 6px 18px -8px rgba(90, 92, 240, .7);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px -10px rgba(90, 92, 240, .8);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--indigo);
+      color: var(--indigo);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: .84rem;
+      border-radius: 10px;
+    }
+
+    .btn:focus-visible,
+    a:focus-visible,
+    button:focus-visible,
+    .chip:focus-visible {
+      outline: 2px solid var(--indigo);
+      outline-offset: 3px;
+    }
+
+    /* ---------- language switch ---------- */
+    .lang-switch {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      z-index: 3;
+      display: inline-flex;
+      gap: 2px;
+      padding: 3px;
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .lang-btn {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      border: none;
+      background: transparent;
+      color: var(--ink-2);
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .lang-btn:not(.active):hover {
+      color: var(--ink);
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(120% 150% at 10% -25%, rgba(140, 158, 255, .7), transparent 55%),
+        radial-gradient(120% 150% at 95% -15%, rgba(255, 150, 182, .6), transparent 55%),
+        linear-gradient(135deg, #dfe3ff 0%, #f4ddec 52%, #ffe6cf 100%);
+    }
+
+    .hero .wrap {
+      position: relative;
+      z-index: 1;
+      padding-top: 64px;
+      padding-bottom: 46px;
+    }
+
+    .role-eyebrow {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+    }
+
+    .role-eyebrow .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 4px var(--mint-soft);
+    }
+
+    h1.name {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2.5rem, 8vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -.025em;
+      margin: 0 0 14px;
+      color: var(--ink);
+    }
+
+    .subtitle {
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      color: var(--ink-2);
+      font-weight: 500;
+      margin: 0 0 26px;
+      max-width: 32ch;
+    }
+
+    .subtitle b {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 0 0 26px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid var(--line);
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: .86rem;
+      color: var(--ink-2);
+      text-decoration: none;
+    }
+
+    .chip svg {
+      width: 15px;
+      height: 15px;
+      color: var(--ink-3);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-meta .wrap {
+      padding-top: 30px;
+      padding-bottom: 4px;
+    }
+
+    /* ---------- section scaffolding ---------- */
+    .section {
+      padding: 50px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: none;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: .74rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 22px;
+    }
+
+    .eyebrow .tick {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      background: var(--mint-soft);
+      color: var(--mint);
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .eyebrow .tick svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .about-text {
+      font-size: 1.12rem;
+      line-height: 1.7;
+      color: var(--ink);
+      max-width: 62ch;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .about-text .hl {
+      background: linear-gradient(transparent 62%, rgba(150, 166, 252, .32) 0);
+      padding: 0 1px;
+    }
+
+    /* ---------- experience ---------- */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .job {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px 24px 22px;
+      transition: border-color .2s ease, box-shadow .25s ease, transform .2s ease;
+    }
+
+    .job:hover {
+      border-color: var(--mist-2);
+      box-shadow: 0 16px 40px -28px rgba(27, 31, 46, .55);
+      transform: translateY(-2px);
+    }
+
+    .job-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .job-co {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.18rem;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    .job-role {
+      color: var(--ink-2);
+      font-weight: 500;
+    }
+
+    .job-year {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: var(--ink-3);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 12px 0 16px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: .74rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      background: var(--mist);
+      color: var(--ink-2);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 7px;
+    }
+
+    ul.points {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    ul.points li {
+      position: relative;
+      padding-left: 26px;
+      color: var(--ink-2);
+      font-size: .96rem;
+    }
+
+    ul.points li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: .62em;
+      width: 11px;
+      height: 7px;
+      border-left: 2px solid var(--indigo);
+      border-bottom: 2px solid var(--indigo);
+      transform: rotate(-45deg);
+      border-radius: 1px;
+    }
+
+    /* ---------- two-up (education + certs) ---------- */
+    .twocol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--mist);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 22px;
+    }
+
+    .card .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .edu-school {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.04rem;
+      color: var(--ink);
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+
+    .edu-meta {
+      color: var(--ink-2);
+      font-size: .92rem;
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: .8rem;
+      color: var(--ink-3);
+      margin-top: 8px;
+    }
+
+    .cert {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .cert:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .cert:first-child {
+      padding-top: 0;
+    }
+
+    .cert-ico {
+      flex: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      margin-top: 1px;
+    }
+
+    .cert-ico.done {
+      background: var(--mint-soft);
+      color: var(--mint);
+    }
+
+    .cert-ico.wip {
+      background: #fdf1e3;
+      color: var(--amber);
+    }
+
+    .cert-ico svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .cert-body {
+      flex: 1;
+    }
+
+    .cert-name {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: .97rem;
+      line-height: 1.35;
+    }
+
+    .cert-sub {
+      font-size: .85rem;
+      color: var(--ink-2);
+    }
+
+    .status {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .status.done {
+      background: var(--mint-soft);
+      color: var(--mint);
+    }
+
+    .status.wip {
+      background: #fdf1e3;
+      color: var(--amber);
+    }
+
+    /* ---------- skills ---------- */
+    .skills {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .skill-row:last-child {
+      border-bottom: none;
+    }
+
+    .skill-label {
+      font-family: var(--mono);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--ink);
+      text-transform: uppercase;
+      padding-top: 3px;
+    }
+
+    .skill-label small {
+      display: block;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink-3);
+      font-weight: 500;
+      font-size: .74rem;
+      margin-top: 2px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink-2);
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 500;
+      transition: border-color .16s ease, color .16s ease, transform .16s ease;
+    }
+
+    .pill:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--mist);
+    }
+
+    .foot {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 34px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .foot-name {
+      font-family: var(--display);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .foot-sub {
+      font-size: .85rem;
+      color: var(--ink-3);
+      margin-top: 2px;
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .icon-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: var(--ink-2);
+      text-decoration: none;
+      transition: border-color .18s ease, color .18s ease, transform .16s ease;
+    }
+
+    .icon-link:hover {
+      border-color: var(--indigo);
+      color: var(--indigo);
+      transform: translateY(-2px);
+    }
+
+    .icon-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    button.icon-link {
+      font: inherit;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* ---------- toast ---------- */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(18px);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-family: var(--body);
+      font-size: .9rem;
+      font-weight: 500;
+      box-shadow: 0 16px 38px -12px rgba(20, 22, 34, .6);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 100;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast svg {
+      width: 16px;
+      height: 16px;
+      color: #4ade80;
+    }
+
+    /* ---------- reveal animation ---------- */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .js .reveal.in {
+      opacity: 1;
+      transform: none;
+      transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    @media (max-width:680px) {
+      .twocol {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-row {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .skill-label {
+        padding-top: 0;
+      }
+
+      .lang-switch {
+        top: 14px;
+        right: 16px;
+      }
+
+      .hero-actions .btn {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .foot {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .js .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="bar">
+      <div class="bar-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/miloszmonkiewicz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.5 18.3 4.8 18.3 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+          </svg>
+          <span data-i18n="gh_view">View GitHub</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="milosz-monkiewicz-cv.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+          </svg>
+          <span data-i18n="dl_cv">Download CV</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="lang-switch" role="group" aria-label="Language / Język">
+      <button type="button" class="lang-btn active" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="pl">PL</button>
+    </div>
+    <div class="wrap">
+      <p class="role-eyebrow"><span class="dot"></span><span data-i18n="role">Junior Manual QA Tester</span></p>
+      <h1 class="name">Miłosz<br>Monkiewicz</h1>
+      <p class="subtitle" data-i18n="tagline">I find what breaks - then write it down clearly enough to <b>fix it
+          once</b>.</p>
+    </div>
+  </section>
+
+  <section class="hero-meta">
+    <div class="wrap">
+      <div class="chips">
+        <span class="chip mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+          monkiewiczmilosz@gmail.com
+        </span>
+        <span class="chip phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path
+              d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+          </svg>
+          +48 511 683 693
+        </span>
+        <span class="chip place">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span data-i18n="loc">Olsztyn, Poland</span>
+        </span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="milosz-monkiewicz-cv.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+          </svg>
+          <span data-i18n="dl_cv">Download CV</span>
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/miloszmonkiewicz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.5 18.3 4.8 18.3 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+          </svg>
+          <span data-i18n="gh_view">View GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+
+    <section class="section reveal" aria-labelledby="about-h">
+      <p class="eyebrow" id="about-h"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 12 5 5L20 6" />
+          </svg></span><span data-i18n="about_h">About</span></p>
+      <p class="about-text" data-i18n="about_p">
+        Detail-oriented junior manual tester focused on <span class="hl">functional, regression, and exploratory
+          testing</span> of web applications. Experienced in designing clear test cases, writing reproducible bug
+        reports, and validating APIs with Postman. Familiar with Cypress and Python for lightweight automation, and
+        eager to grow into a well-rounded QA engineer.
+      </p>
+    </section>
+
+    <section class="section reveal" aria-labelledby="exp-h">
+      <p class="eyebrow" id="exp-h"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 12 5 5L20 6" />
+          </svg></span><span data-i18n="exp_h">Experience</span></p>
+      <div class="timeline">
+
+        <article class="job">
+          <div class="job-head">
+            <div><span class="job-co">PGS50</span> <span class="job-role" data-i18n="job1_role">- Junior Manual QA
+                Tester (Intern)</span>
+            </div>
+            <span class="job-year">2026</span>
+          </div>
+          <div class="tags">
+            <span class="tag">Jira</span><span class="tag">Postman</span><span class="tag">Cypress</span>
+          </div>
+          <ul class="points">
+            <li data-i18n="job1_b1">Designed and executed manual test cases for web applications, covering functional,
+              regression, and exploratory testing.</li>
+            <li data-i18n="job1_b2">Logged, tracked, and verified defects in Jira with clear reproduction steps,
+              severity, and screenshots.</li>
+            <li data-i18n="job1_b3">Validated REST API endpoints in Postman - status codes, response schema, and edge
+              cases.</li>
+            <li data-i18n="job1_b4">Supported automation by maintaining a small set of Cypress end-to-end checks.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-head">
+            <div><span class="job-co">AMCO Inc.</span> <span class="job-role" data-i18n="job2_role">- QA Tester
+                (Intern)</span></div>
+            <span class="job-year">2025</span>
+          </div>
+          <div class="tags">
+            <span class="tag">Jira</span><span class="tag">Postman</span>
+          </div>
+          <ul class="points">
+            <li data-i18n="job2_b1">Performed smoke and sanity testing on new builds before release.</li>
+            <li data-i18n="job2_b2">Collaborated with developers to reproduce and confirm fixes.</li>
+            <li data-i18n="job2_b3">Helped keep test documentation organized and up to date.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="twocol">
+        <div class="card">
+          <p class="eyebrow"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 12 5 5L20 6" />
+              </svg></span><span data-i18n="edu_h">Education</span></p>
+          <p class="edu-school" data-i18n="edu_school">Electronic &amp; Telecommunication Technical School</p>
+          <p class="edu-meta" data-i18n="edu_role">Mechatronics Technician</p>
+          <p class="edu-year" data-i18n="edu_year">2023 – present</p>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 12 5 5L20 6" />
+              </svg></span><span data-i18n="cert_h">Certifications</span></p>
+          <div class="cert">
+            <span class="cert-ico done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 12 5 5L20 6" />
+              </svg></span>
+            <div class="cert-body">
+              <div class="cert-name" data-i18n="cert1_name">C1 Advanced English Certificate</div>
+              <div class="cert-sub" data-i18n="cert1_sub">Cambridge · 2026</div>
+              <span class="status done" data-i18n="cert1_status">Achieved</span>
+            </div>
+          </div>
+          <div class="cert">
+            <span class="cert-ico wip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg></span>
+            <div class="cert-body">
+              <div class="cert-name" data-i18n="cert2_name">ISTQB Certified Tester - Foundation Level (CTFL)</div>
+              <span class="status wip" data-i18n="cert2_status">In progress</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" aria-labelledby="skills-h">
+      <p class="eyebrow" id="skills-h"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 12 5 5L20 6" />
+          </svg></span><span data-i18n="skills_h">Skills &amp; Tools</span></p>
+      <div class="skills">
+        <div class="skill-row">
+          <div class="skill-label" data-i18n="sk_design">Test Design</div>
+          <div class="pills">
+            <span class="pill" data-i18n="p_cases">Test cases</span><span class="pill" data-i18n="p_scen">Test
+              scenarios</span><span class="pill" data-i18n="p_expl">Exploratory testing</span><span class="pill"
+              data-i18n="p_regr">Regression testing</span><span class="pill" data-i18n="p_bug">Bug reporting</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label" data-i18n="sk_mgmt">Test Management</div>
+          <div class="pills"><span class="pill" data-i18n="p_jira">Jira (issue tracking, workflows)</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label" data-i18n="sk_api">API Testing</div>
+          <div class="pills"><span class="pill" data-i18n="p_postman">Postman (status codes, schema, edge
+              cases)</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span data-i18n="sk_auto">Automation</span> <small
+              data-i18n="sk_auto_small">familiar</small></div>
+          <div class="pills"><span class="pill">Cypress (E2E)</span><span class="pill">Python</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label" data-i18n="sk_os">Operating Systems</div>
+          <div class="pills"><span class="pill">Windows</span><span class="pill">macOS</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label" data-i18n="sk_other">Other</div>
+          <div class="pills"><span class="pill" data-i18n="p_sql">Basic SQL</span><span class="pill">Chrome
+              DevTools</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label" data-i18n="sk_soft">Soft Skills</div>
+          <div class="pills"><span class="pill" data-i18n="p_attn">Attention to detail</span><span class="pill"
+              data-i18n="p_anal">Analytical thinking</span><span class="pill" data-i18n="p_comm">Clear
+              communication</span><span class="pill" data-i18n="p_cur">Curiosity</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div>
+        <div class="foot-name">Miłosz Monkiewicz</div>
+        <div class="foot-sub" data-i18n="foot_sub">Junior Manual QA Tester · Olsztyn, Poland</div>
+      </div>
+      <div class="foot-links">
+        <button type="button" class="icon-link" id="copy-mail" data-email="monkiewiczmilosz@gmail.com"
+          aria-label="Copy email address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+        </button>
+        <a class="icon-link" href="https://github.com/miloszmonkiewicz" target="_blank" rel="noopener"
+          aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.5 18.3 4.8 18.3 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+          </svg>
+        </a>
+        <a class="icon-link" href="milosz-monkiewicz-cv.pdf" download aria-label="Download CV">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="m5 12 5 5L20 6" />
+    </svg>
+    <span data-i18n="toast">Email copied to clipboard</span>
+  </div>
+
+  <script>
+    // ---------- i18n (EN / PL) ----------
+    var I18N = {
+      _title: {
+        en: "Miłosz Monkiewicz — Junior Manual QA Tester",
+        pl: "Miłosz Monkiewicz — Junior Manual QA Tester"
+      },
+      role: { en: "Junior Manual QA Tester", pl: "Junior Manual QA Tester" },
+      tagline: {
+        en: "I find what breaks - then write it down clearly enough to <b>fix it once</b>.",
+        pl: "Znajduję to, co się psuje — i opisuję na tyle jasno, by <b>naprawić to raz</b>."
+      },
+      loc: { en: "Olsztyn, Poland", pl: "Olsztyn, Polska" },
+      dl_cv: { en: "Download CV", pl: "Pobierz CV" },
+      gh_view: { en: "View GitHub", pl: "Zobacz GitHub" },
+      about_h: { en: "About", pl: "O mnie" },
+      about_p: {
+        en: "Detail-oriented junior manual tester focused on <span class=\"hl\">functional, regression, and exploratory testing</span> of web applications. Experienced in designing clear test cases, writing reproducible bug reports, and validating APIs with Postman. Familiar with Cypress and Python for lightweight automation, and eager to grow into a well-rounded QA engineer.",
+        pl: "Skrupulatny junior tester manualny skupiony na <span class=\"hl\">testach funkcjonalnych, regresji i eksploracyjnych</span> aplikacji webowych. Doświadczony w projektowaniu czytelnych przypadków testowych, pisaniu odtwarzalnych raportów błędów i walidacji API w Postmanie. Zna podstawy Cypress i Pythona do prostej automatyzacji oraz chce rozwijać się w stronę wszechstronnego inżyniera QA."
+      },
+      exp_h: { en: "Experience", pl: "Doświadczenie" },
+      job1_role: { en: "- Junior Manual QA Tester (Intern)", pl: "- Junior Manual QA Tester (staż)" },
+      job1_b1: {
+        en: "Designed and executed manual test cases for web applications, covering functional, regression, and exploratory testing.",
+        pl: "Projektowałem i wykonywałem manualne przypadki testowe dla aplikacji webowych, obejmujące testy funkcjonalne, regresji i eksploracyjne."
+      },
+      job1_b2: {
+        en: "Logged, tracked, and verified defects in Jira with clear reproduction steps, severity, and screenshots.",
+        pl: "Zgłaszałem, śledziłem i weryfikowałem defekty w Jirze z jasnymi krokami odtworzenia, wagą błędu i zrzutami ekranu."
+      },
+      job1_b3: {
+        en: "Validated REST API endpoints in Postman - status codes, response schema, and edge cases.",
+        pl: "Walidowałem endpointy REST API w Postmanie - kody statusu, schemat odpowiedzi i przypadki brzegowe."
+      },
+      job1_b4: {
+        en: "Supported automation by maintaining a small set of Cypress end-to-end checks.",
+        pl: "Wspierałem automatyzację, utrzymując niewielki zestaw testów end-to-end w Cypressie."
+      },
+      job2_role: { en: "- QA Tester (Intern)", pl: "- QA Tester (staż)" },
+      job2_b1: {
+        en: "Performed smoke and sanity testing on new builds before release.",
+        pl: "Wykonywałem testy smoke i sanity nowych buildów przed wydaniem."
+      },
+      job2_b2: {
+        en: "Collaborated with developers to reproduce and confirm fixes.",
+        pl: "Współpracowałem z programistami przy odtwarzaniu i potwierdzaniu poprawek."
+      },
+      job2_b3: {
+        en: "Helped keep test documentation organized and up to date.",
+        pl: "Dbałem o uporządkowaną i aktualną dokumentację testową."
+      },
+      edu_h: { en: "Education", pl: "Wykształcenie" },
+      edu_school: {
+        en: "Electronic & Telecommunication Technical School",
+        pl: "Technikum Elektroniczno-Telekomunikacyjne"
+      },
+      edu_role: { en: "Mechatronics Technician", pl: "Technik mechatronik" },
+      edu_year: { en: "2023 – present", pl: "2023 – obecnie" },
+      cert_h: { en: "Certifications", pl: "Certyfikaty" },
+      cert1_name: { en: "C1 Advanced English Certificate", pl: "Certyfikat C1 Advanced (angielski)" },
+      cert1_sub: { en: "Cambridge · 2026", pl: "Cambridge · 2026" },
+      cert1_status: { en: "Achieved", pl: "Zdobyty" },
+      cert2_name: {
+        en: "ISTQB Certified Tester - Foundation Level (CTFL)",
+        pl: "ISTQB Certified Tester - Foundation Level (CTFL)"
+      },
+      cert2_status: { en: "In progress", pl: "W trakcie" },
+      skills_h: { en: "Skills & Tools", pl: "Umiejętności i narzędzia" },
+      sk_design: { en: "Test Design", pl: "Projektowanie testów" },
+      sk_mgmt: { en: "Test Management", pl: "Zarządzanie testami" },
+      sk_api: { en: "API Testing", pl: "Testowanie API" },
+      sk_auto: { en: "Automation", pl: "Automatyzacja" },
+      sk_auto_small: { en: "familiar", pl: "podstawy" },
+      sk_os: { en: "Operating Systems", pl: "Systemy operacyjne" },
+      sk_other: { en: "Other", pl: "Inne" },
+      sk_soft: { en: "Soft Skills", pl: "Umiejętności miękkie" },
+      p_cases: { en: "Test cases", pl: "Przypadki testowe" },
+      p_scen: { en: "Test scenarios", pl: "Scenariusze testowe" },
+      p_expl: { en: "Exploratory testing", pl: "Testy eksploracyjne" },
+      p_regr: { en: "Regression testing", pl: "Testy regresji" },
+      p_bug: { en: "Bug reporting", pl: "Raportowanie błędów" },
+      p_jira: { en: "Jira (issue tracking, workflows)", pl: "Jira (śledzenie zgłoszeń, workflow)" },
+      p_postman: { en: "Postman (status codes, schema, edge cases)", pl: "Postman (kody statusu, schemat, przypadki brzegowe)" },
+      p_sql: { en: "Basic SQL", pl: "Podstawy SQL" },
+      p_attn: { en: "Attention to detail", pl: "Skrupulatność" },
+      p_anal: { en: "Analytical thinking", pl: "Myślenie analityczne" },
+      p_comm: { en: "Clear communication", pl: "Jasna komunikacja" },
+      p_cur: { en: "Curiosity", pl: "Ciekawość" },
+      foot_sub: { en: "Junior Manual QA Tester · Olsztyn, Poland", pl: "Junior Manual QA Tester · Olsztyn, Polska" },
+      toast: { en: "Email copied to clipboard", pl: "Skopiowano adres e-mail" }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      if (I18N._title && I18N._title[lang]) document.title = I18N._title[lang];
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var entry = I18N[el.getAttribute('data-i18n')];
+        if (entry && entry[lang] != null) el.innerHTML = entry[lang];
+      });
+      document.querySelectorAll('.lang-btn').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+    });
+    setLang('en');
+
+    // ---------- header bar: appears when the hero CTAs scroll out of view ----------
+    var hdr = document.querySelector('header');
+    var heroCta = document.querySelector('.hero-actions');
+    if (hdr && heroCta && 'IntersectionObserver' in window) {
+      var barObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          hdr.classList.toggle('nav-shown', !e.isIntersecting);
+        });
+      }, { threshold: 0 });
+      barObs.observe(heroCta);
+    } else if (hdr) {
+      var fb = function () { hdr.classList.toggle('nav-shown', window.scrollY > 320); };
+      fb();
+      window.addEventListener('scroll', fb, { passive: true });
+    }
+
+    // ---------- scroll-reveal (skipped automatically for reduced-motion via CSS) ----------
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // ---------- copy email to clipboard + toast ----------
+    (function () {
+      var btn = document.getElementById('copy-mail');
+      var toast = document.getElementById('toast');
+      if (!btn || !toast) return;
+
+      var fallbackCopy = function (text) {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        } catch (e) { }
+      };
+
+      var showToast = function () {
+        toast.classList.add('show');
+        clearTimeout(toast._t);
+        toast._t = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+      };
+
+      btn.addEventListener('click', function () {
+        var email = btn.getAttribute('data-email');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(showToast, function () { fallbackCopy(email); showToast(); });
+        } else {
+          fallbackCopy(email);
+          showToast();
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
